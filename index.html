@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stride – Shoes for every step</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f4ef;--surface:#fff;--ink:#14213d;--muted:#5b6478;--line:#dcdfd6;--accent:#2f5bff;--accent-ink:#fff;--sun:#ffd23f;--danger:#c62828;--ok:#1b7f4b;--shadow:0 10px 30px rgba(20,33,61,.12);color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1424;--surface:#192038;--ink:#eef1fb;--muted:#a3adc7;--line:#2b3454;--accent:#7a97ff;--accent-ink:#0f1424;--danger:#ff8a80;--ok:#6fd49b;--shadow:0 10px 30px rgba(0,0,0,.45);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1424;--surface:#192038;--ink:#eef1fb;--muted:#a3adc7;--line:#2b3454;--accent:#7a97ff;--accent-ink:#0f1424;--danger:#ff8a80;--ok:#6fd49b;--shadow:0 10px 30px rgba(0,0,0,.45);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1.05;margin:0}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:14px;height:64px}
+.logo{font:800 26px "Bricolage Grotesque",sans-serif;letter-spacing:-.04em;color:var(--ink);text-decoration:none;margin-right:auto}
+.logo i{font-style:normal;color:var(--accent)}
+.btn{border:2px solid var(--ink);background:transparent;border-radius:999px;padding:8px 18px;font-weight:700;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.dark{background:var(--ink);color:var(--bg)}
+.btn.ghost{border-color:transparent;padding:8px 10px}
+.cartbtn{position:relative;display:flex;gap:8px;align-items:center}
+.badge{background:var(--sun);color:#14213d;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:13px;font-weight:700;padding:0 6px}
+.who{display:none;align-items:center;gap:10px}
+.who.on{display:flex}
+.av{width:34px;height:34px;border-radius:50%;background:var(--sun);color:#14213d;display:grid;place-items:center;font-weight:800}
+.hello{font-weight:700;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:620px){.hello{display:none}}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center;padding:44px 0 36px}
+.hero h1{font-size:clamp(40px,6.4vw,76px);letter-spacing:-.04em;font-weight:800}
+.hero p{font-size:18px;color:var(--muted);max-width:44ch;margin:18px 0 26px}
+.stage{background:var(--sun);border-radius:36px;aspect-ratio:1.1;display:grid;place-items:center;position:relative;overflow:hidden}
+.stage::after{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:var(--accent);opacity:.9;right:-14%;bottom:-24%}
+.stage svg{width:92%;position:relative;z-index:1;transform:rotate(-8deg);filter:drop-shadow(0 18px 14px rgba(20,33,61,.25))}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:24px}}
+.perks{display:flex;flex-wrap:wrap;gap:10px 28px;padding:14px 0 6px;color:var(--muted);font-size:15px}
+.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:26px 0 18px}
+.tools h2{font-size:34px;margin-right:auto;letter-spacing:-.03em}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 16px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.field{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding-bottom:60px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.pic{aspect-ratio:1.25;display:grid;place-items:center;position:relative}
+.pic svg{width:86%}.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tag{z-index:1}.th img{width:100%;height:100%;object-fit:cover;border-radius:14px;display:block}.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.tag{position:absolute;left:12px;top:12px;background:var(--ink);color:var(--bg);border-radius:999px;padding:3px 11px;font-size:13px;font-weight:700}
+.info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info h3{font-size:21px;letter-spacing:-.02em}
+.meta{color:var(--muted);font-size:14px}
+.price{font-weight:700;font-size:19px}.price s{color:var(--muted);font-weight:400;font-size:15px;margin-left:6px}
+.row{display:flex;gap:8px;margin-top:auto;padding-top:8px}
+.row select{flex:0 0 92px}
+.row .btn{flex:1;padding:9px 10px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+footer{border-top:1px solid var(--line);padding:26px 0 34px;color:var(--muted);font-size:14px}
+.scrim{position:fixed;inset:0;background:rgba(10,14,30,.55);z-index:40;display:none}
+.scrim.on{display:block}
+.drawer{position:fixed;top:0;bottom:0;right:0;width:min(420px,100%);background:var(--surface);z-index:50;transform:translateX(105%);transition:transform .28s;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.on{transform:none}
+.dh{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dh h2{font-size:26px}
+.items{flex:1;overflow:auto;padding:6px 20px}
+.item{display:grid;grid-template-columns:84px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.item .th{border-radius:14px;overflow:hidden;display:grid;place-items:center;aspect-ratio:1}
+.item .th svg{width:90%}
+.item b{display:block}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;margin-top:6px}
+.qty button{border:0;background:none;width:30px;height:30px;font-size:18px}
+.rm{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:13px}
+.df{padding:16px 20px;border-top:1px solid var(--line);display:grid;gap:10px}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:18px}
+.modal{position:fixed;z-index:60;left:50%;top:50%;width:min(420px,calc(100% - 28px));max-height:calc(100% - 28px);overflow:auto;background:var(--surface);border-radius:26px;padding:26px;box-shadow:var(--shadow);transform:translate(-50%,-46%);opacity:0;pointer-events:none;transition:.2s}
+.modal.on{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}
+.modal h2{font-size:30px;letter-spacing:-.03em}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:999px;padding:4px;margin:16px 0}
+.tabs button{border:0;background:none;border-radius:999px;padding:8px;font-weight:700}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+form{display:grid;gap:12px}
+label{display:grid;gap:5px;font-weight:500;font-size:14px}
+label input{width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px}
+label input:focus{border-color:var(--accent)}
+.err{color:var(--danger);font-size:14px;min-height:20px;margin:0}
+.x{position:absolute;right:14px;top:14px}
+.note{color:var(--muted);font-size:13px;margin:4px 0 0}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:999px;z-index:80;opacity:0;pointer-events:none;transition:.25s;font-weight:500;max-width:92%}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.done{text-align:center;padding:40px 10px}
+.done h3{font-size:28px;margin:10px 0}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="#top">stride<i>.</i></a>
+  <div class="who" id="who"><span class="av" id="av"></span><span class="hello" id="hello"></span><button class="btn ghost" id="outBtn">Sign out</button></div>
+  <button class="btn" id="inBtn">Sign in</button>
+  <button class="btn dark cartbtn" id="cartBtn" aria-label="Open cart">Cart <span class="badge" id="count">0</span></button>
+</div></header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div>
+      <h1>Find the pair that keeps up with you.</h1>
+      <p>Running, court, city and formal shoes in one place. Create an account to save your cart and check out in under a minute.</p>
+      <button class="btn pri" id="shopNow">Shop new arrivals</button>
+      <div class="perks"><span>Free delivery over ₹4,999</span><span>30-day returns</span><span>Secure checkout</span></div>
+    </div>
+    <div class="stage" id="heroPic"></div>
+  </section>
+
+  <section id="shop">
+    <div class="tools">
+      <h2>All shoes</h2>
+      <input class="field" id="q" type="search" placeholder="Search shoes" aria-label="Search shoes">
+      <select class="field" id="sort" aria-label="Sort"><option value="feat">Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option><option value="rate">Top rated</option></select>
+    </div>
+    <div class="chips" id="chips" style="margin-bottom:20px"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+<footer><div class="wrap">© 2026 Stride. Demo store: accounts and carts are saved only in this browser.</div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="dh"><h2>Your cart</h2><button class="btn ghost" id="closeCart">Close</button></div>
+  <div class="items" id="items"></div>
+  <div class="df" id="df"></div>
+</aside>
+
+<div class="modal" id="auth" role="dialog" aria-modal="true" aria-labelledby="authT">
+  <button class="btn ghost x" id="closeAuth">Close</button>
+  <h2 id="authT">Welcome back</h2>
+  <p class="note" id="authNote">Sign in to check out and keep your cart across visits.</p>
+  <div class="tabs" role="tablist"><button role="tab" id="tIn" aria-selected="true">Sign in</button><button role="tab" id="tUp" aria-selected="false">Create account</button></div>
+  <form id="fIn" novalidate>
+    <label>Email<input type="email" id="inE" autocomplete="email" required></label>
+    <label>Password<input type="password" id="inP" autocomplete="current-password" required></label>
+    <p class="err" id="inErr" role="alert"></p>
+    <button class="btn pri" type="submit">Sign in</button>
+  </form>
+  <form id="fUp" novalidate hidden>
+    <label>Full name<input type="text" id="upN" autocomplete="name" required></label>
+    <label>Email<input type="email" id="upE" autocomplete="email" required></label>
+    <label>Password (6+ characters)<input type="password" id="upP" autocomplete="new-password" required></label>
+    <label>Confirm password<input type="password" id="upC" autocomplete="new-password" required></label>
+    <p class="err" id="upErr" role="alert"></p>
+    <button class="btn pri" type="submit">Create account</button>
+  </form>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const inr=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n);
+const P=[
+{id:1,name:'Aero Runner',cat:'Running',price:5999,old:7499,c:['#ff5a36','#14213d','#ffd23f','#ffe3da'],tag:'Bestseller',r:4.8},
+{id:2,name:'Courtline High',cat:'Court',price:6999,old:0,c:['#14213d','#2f5bff','#ffffff','#dbe4ff'],tag:'New',r:4.6},
+{id:3,name:'Cloud Walk',cat:'Casual',price:3999,old:4999,c:['#f2efe6','#8fb996','#14213d','#e4f1e6'],tag:'',r:4.7},
+{id:4,name:'Metro Loafer',cat:'Formal',price:4799,old:0,c:['#5a3a29','#2b1a12','#c9a27a','#f1e4d6'],tag:'',r:4.5},
+{id:5,name:'Sprint Pro',cat:'Running',price:8499,old:9999,c:['#2f5bff','#ffd23f','#14213d','#dbe4ff'],tag:'Sale',r:4.9},
+{id:6,name:'Daily Canvas',cat:'Casual',price:2499,old:0,c:['#e9c46a','#264653','#ffffff','#fbf1d3'],tag:'',r:4.3},
+{id:7,name:'Oxford Classic',cat:'Formal',price:5599,old:6499,c:['#1b1b1b','#444','#d9d9d9','#e8e8e8'],tag:'Sale',r:4.4},
+{id:8,name:'Dunk Rise',cat:'Court',price:7299,old:0,c:['#c62828','#ffffff','#14213d','#ffd9d6'],tag:'New',r:4.6}
+];
+function shoe(c){const[a,b,d]=c;return `<svg viewBox="0 0 200 120" aria-hidden="true"><ellipse cx="100" cy="109" rx="84" ry="5" fill="rgba(20,33,61,.18)"/><path d="M12 88Q12 78 24 78H178Q192 80 190 92Q188 101 176 101H26Q12 101 12 88Z" fill="#fff" stroke="rgba(20,33,61,.25)" stroke-width="1.5"/><path d="M24 78L30 42Q32 31 45 33L70 41Q81 45 93 35L112 23Q125 16 135 27L150 51Q160 63 180 69Q190 73 190 80Z" fill="${a}"/><path d="M24 78L28 56Q50 62 66 78Z" fill="${d}"/><path d="M90 78Q120 70 150 52L158 62Q130 78 112 78Z" fill="${b}"/><g stroke="${b==='#ffffff'?'#14213d':'#ffffff'}" stroke-width="2.4" stroke-linecap="round" opacity=".85"><path d="M96 40L106 47M106 33L116 41M116 27L124 35"/></g><path d="M170 70Q184 72 188 80" stroke="rgba(0,0,0,.15)" stroke-width="2" fill="none"/></svg>`}
+/* ===== EDIT HERE: brand and photo for each shoe =====
+   Product photos below use real hosted shoe photography. You can replace any URL in IMG with your own product photo.
+   Rename the shoes and brands to match the photos you use. If a photo is missing, the drawn shoe is shown. */
+const BR={1:'Nike',2:'Adidas',3:'Woodland',4:'Woodland',5:'Nike',6:'Adidas',7:'Puma',8:'Reebok'};
+const IMG={
+  1:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85',
+  2:'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=85',
+  3:'https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=900&q=85',
+  4:'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=900&q=85',
+  5:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=85',
+  6:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=85',
+  7:'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=900&q=85',
+  8:'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=900&q=85'
+};
+P.forEach(p=>p.brand=BR[p.id]);
+const slug=p=>(p.brand+' '+p.name).toLowerCase().replace(/[^a-z0-9]+/g,'-');
+const pic=p=>`<img src="${IMG[p.id]||'images/'+slug(p)+'.jpg'}" alt="${p.brand} ${p.name}" loading="lazy" data-fb="${p.id}">`;
+document.addEventListener('error',e=>{const t=e.target;if(t.tagName==='IMG'&&t.dataset.fb){t.outerHTML=shoe(P.find(x=>x.id==t.dataset.fb).c)}},true);
+$('#heroPic').innerHTML=pic(P[4]);
+
+/* storage helpers (always guarded) */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const hash=s=>{let h=5381;for(const ch of s)h=((h<<5)+h+ch.charCodeAt(0))>>>0;return String(h)};
+let users=store.get('stride_users',{}),session=store.get('stride_session',null);
+if(session&&!users[session])session=null;
+const cartKey=()=>'stride_cart_'+(session||'guest');
+let cart=store.get(cartKey(),[]);
+const saveCart=()=>store.set(cartKey(),cart);
+
+let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2400)}
+
+/* shop grid */
+let cat='All',lastFocus=null;
+const cats=['All',...new Set(P.map(p=>p.brand)),...new Set(P.map(p=>p.cat))];
+function chips(){$('#chips').innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c}</button>`).join('')}
+function grid(){
+  const q=$('#q').value.trim().toLowerCase(),s=$('#sort').value;
+  let l=P.filter(p=>(cat==='All'||p.cat===cat||p.brand===cat)&&(p.name+' '+p.cat+' '+p.brand).toLowerCase().includes(q));
+  if(s==='lo')l.sort((a,b)=>a.price-b.price);if(s==='hi')l.sort((a,b)=>b.price-a.price);if(s==='rate')l.sort((a,b)=>b.r-a.r);
+  $('#grid').innerHTML=l.length?l.map(p=>`<article class="card"><div class="pic" style="background:${p.c[3]}">${p.tag?`<span class="tag">${p.tag}</span>`:''}${pic(p)}</div><div class="info"><h3>${p.name}</h3><div class="meta">${p.brand} · ${p.cat} · ★ ${p.r}</div><div class="price">${inr(p.price)}${p.old?`<s>${inr(p.old)}</s>`:''}</div><div class="row"><select class="field" aria-label="Size for ${p.name}" id="sz${p.id}">${[6,7,8,9,10,11].map(n=>`<option${n===8?' selected':''}>UK ${n}</option>`).join('')}</select><button class="btn pri" data-add="${p.id}">Add to cart</button></div></div></article>`).join(''):'<div class="empty">No shoes match that search. Try another name or category.</div>';
+}
+$('#chips').onclick=e=>{const b=e.target.closest('[data-cat]');if(b){cat=b.dataset.cat;chips();grid()}};
+$('#q').oninput=grid;$('#sort').onchange=grid;
+$('#grid').onclick=e=>{const b=e.target.closest('[data-add]');if(!b)return;const id=+b.dataset.add,size=$('#sz'+id).value;const f=cart.find(i=>i.id===id&&i.size===size);f?f.qty++:cart.push({id,size,qty:1});saveCart();renderCart();toast(P.find(p=>p.id===id).name+' ('+size+') added to cart')};
+$('#shopNow').onclick=()=>$('#shop').scrollIntoView();
+
+/* cart drawer */
+function renderCart(){
+  const n=cart.reduce((a,i)=>a+i.qty,0);$('#count').textContent=n;
+  const box=$('#items'),df=$('#df');
+  if(!cart.length){box.innerHTML='<div class="empty">Your cart is empty.<br>Add a pair and it will show up here.</div>';df.innerHTML='<button class="btn pri" id="keep">Keep shopping</button>';return}
+  box.innerHTML=cart.map((i,ix)=>{const p=P.find(x=>x.id===i.id);return `<div class="item"><div class="th" style="background:${p.c[3]}">${pic(p)}</div><div><b>${p.name}</b><span class="meta">${i.size} · ${inr(p.price)}</span><br><span class="qty"><button data-q="${ix}:-1" aria-label="Decrease">−</button><span>${i.qty}</span><button data-q="${ix}:1" aria-label="Increase">+</button></span></div><div style="text-align:right"><b>${inr(p.price*i.qty)}</b><br><button class="rm" data-rm="${ix}">Remove</button></div></div>`}).join('');
+  const sub=cart.reduce((a,i)=>a+P.find(p=>p.id===i.id).price*i.qty,0),ship=sub>=4999?0:199;
+  df.innerHTML=`<div class="meta" style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${inr(sub)}</span></div><div class="meta" style="display:flex;justify-content:space-between"><span>Delivery</span><span>${ship?inr(ship):'Free'}</span></div><div class="tot"><span>Total</span><span>${inr(sub+ship)}</span></div><button class="btn pri" id="checkout">${session?'Place order':'Sign in to check out'}</button>`;
+}
+$('#items').onclick=e=>{const q=e.target.closest('[data-q]'),r=e.target.closest('[data-rm]');
+  if(q){const[ix,d]=q.dataset.q.split(':').map(Number);cart[ix].qty+=d;if(cart[ix].qty<1)cart.splice(ix,1)}
+  else if(r){cart.splice(+r.dataset.rm,1)}else return;saveCart();renderCart()};
+$('#df').onclick=e=>{
+  if(e.target.id==='keep')closeAll();
+  if(e.target.id==='checkout'){
+    if(!session){openAuth('in','Sign in or create an account to place your order.');return}
+    const no='ST'+Math.floor(100000+Math.random()*900000);cart=[];saveCart();renderCart();
+    $('#items').innerHTML=`<div class="done"><div style="font-size:48px">🎉</div><h3>Order placed</h3><p class="meta">Thanks, ${users[session].name.split(' ')[0]}. Your order ${no} is on its way. A confirmation was sent to ${session}.</p></div>`;
+    $('#df').innerHTML='<button class="btn pri" id="keep">Keep shopping</button>';
+  }};
+
+/* overlays */
+function openCart(){lastFocus=document.activeElement;renderCart();$('#scrim').classList.add('on');$('#drawer').classList.add('on');$('#closeCart').focus()}
+function closeAll(){['#scrim'].forEach(s=>$(s).classList.remove('on'));$('#drawer').classList.remove('on');$('#auth').classList.remove('on');lastFocus&&lastFocus.focus&&lastFocus.focus()}
+$('#cartBtn').onclick=openCart;$('#closeCart').onclick=closeAll;$('#scrim').onclick=closeAll;$('#closeAuth').onclick=closeAll;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+
+/* auth */
+function tab(w){const i=w==='in';$('#fIn').hidden=!i;$('#fUp').hidden=i;$('#tIn').setAttribute('aria-selected',i);$('#tUp').setAttribute('aria-selected',!i);$('#authT').textContent=i?'Welcome back':'Create your account';$('#inErr').textContent=$('#upErr').textContent=''}
+$('#tIn').onclick=()=>tab('in');$('#tUp').onclick=()=>tab('up');
+function openAuth(w,msg){if(!$('#drawer').classList.contains('on'))lastFocus=document.activeElement;$('#drawer').classList.remove('on');$('#scrim').classList.add('on');$('#auth').classList.add('on');tab(w);$('#authNote').textContent=msg||'Sign in to check out and keep your cart across visits.';setTimeout(()=>(w==='in'?$('#inE'):$('#upN')).focus(),50)}
+$('#inBtn').onclick=()=>openAuth('in');
+const okMail=s=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);
+function login(email){
+  const guest=store.get('stride_cart_guest',[]);session=email;store.set('stride_session',email);
+  cart=store.get(cartKey(),[]);
+  guest.forEach(g=>{const f=cart.find(i=>i.id===g.id&&i.size===g.size);f?f.qty+=g.qty:cart.push(g)});
+  store.set('stride_cart_guest',[]);saveCart();ui();
+}
+$('#fIn').onsubmit=e=>{e.preventDefault();const em=$('#inE').value.trim().toLowerCase(),pw=$('#inP').value,er=$('#inErr');
+  if(!okMail(em))return er.textContent='Enter a valid email address.';
+  if(!users[em])return er.textContent='No account found for that email. Create an account instead.';
+  if(users[em].pw!==hash(pw))return er.textContent='That password is incorrect. Check it and try again.';
+  login(em);closeAll();e.target.reset();toast('Signed in. Welcome back, '+users[em].name.split(' ')[0]+'!')};
+$('#fUp').onsubmit=e=>{e.preventDefault();const nm=$('#upN').value.trim(),em=$('#upE').value.trim().toLowerCase(),pw=$('#upP').value,er=$('#upErr');
+  if(nm.length<2)return er.textContent='Enter your full name.';
+  if(!okMail(em))return er.textContent='Enter a valid email address.';
+  if(pw.length<6)return er.textContent='Use a password with at least 6 characters.';
+  if(pw!==$('#upC').value)return er.textContent='The passwords don’t match.';
+  if(users[em])return er.textContent='An account with this email already exists. Sign in instead.';
+  users[em]={name:nm,pw:hash(pw)};store.set('stride_users',users);login(em);closeAll();e.target.reset();toast('Account created. Welcome, '+nm.split(' ')[0]+'!')};
+$('#outBtn').onclick=()=>{session=null;store.set('stride_session',null);cart=store.get(cartKey(),[]);ui();toast('You’re signed out.')};
+function ui(){const on=!!session;$('#who').classList.toggle('on',on);$('#inBtn').hidden=on;
+  if(on){const n=users[session].name;$('#hello').textContent='Hi, '+n.split(' ')[0];$('#av').textContent=n[0].toUpperCase()}
+  renderCart()}
+chips();grid();ui();
+</script>
+</body>
+</html>
